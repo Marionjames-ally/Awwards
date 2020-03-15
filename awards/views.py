@@ -19,3 +19,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/registration_form.html', {'form': form})
+
+def home(request):
+    return(request, 'index.html')
+

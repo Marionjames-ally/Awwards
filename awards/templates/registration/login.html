@@ -1,0 +1,35 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container" style=" margin-left:330px;" >
+  <div class="row">
+    <div class="col-md-4">
+      {% if errors %}
+        <p> {{error}} </p>
+      {% endif %}
+      <div class="card" style="width:600px;padding-top:50px;padding-bottom:50px;margin-top:100px;background-color:#e2e3d1 ;">
+          <div class="card-body">
+          <h4 class="card-title text-center">Log into instagram</h4>
+
+          <form method="post" action="{% url 'login'%}" class="text-center"  >
+              {% csrf_token %}
+              <input type="hidden"  name="next" value="{{ next }}">
+
+              {{ form|crispy }}
+              <br>
+
+              <button type="submit" class="btn btn-outline-primary text-center">Log in</button>
+              <hr>
+              <br>
+                  <p>Don't have an account ? <a href="{% url 'signup'%}">signup</a></p>
+
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
