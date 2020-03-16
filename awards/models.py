@@ -36,3 +36,20 @@ class Profile(models.Model):
     def search_profile(self,username):
         users = User.objects.filter(username=username)
         return users
+
+class Blog(models.Model):
+    image = CloudinaryField('image')
+    name = models.CharField(max_length=250)
+    caption = models.CharField(max_length=250)
+    link = models.URLField(max_length=250)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE,default="user", related_name='posts')
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.user} Project'
+
+    def save_project(self):
+        self.save()
+
+    def delete_project(self,id):
+        self.delete(id=id)

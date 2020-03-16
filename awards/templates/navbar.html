@@ -17,7 +17,7 @@
         </div>
 
       <!-- Adding a search form  -->
-      <div class="col-sm-4 col-md-4" style="display:flex;float:right;">
+      <div class="col-sm-4 col-md-2" style="display:flex;float:right;">
       
             {% if current_user.is_authenticated %}
               <img class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://cdn1.iconfinder.com/data/icons/instagram-ui-glyph/48/Sed-01-128.png" width="70rem" style="">
@@ -25,11 +25,13 @@
                     <a href="{% url 'profile' %}" class="dropdown-item" >profile</a>
                     <a class="dropdown-item" href="{% url 'signout' %}">Log out</a>
                 </div>
-                <div class="navbar-header">
+                
             {% else %}
                 <a class="navbar-brand" style="color:black;font-weight:bolder;font-size:x-large;" href="{% url 'login' %}">Register/login</a>
             {%endif%}
+            
         </div>
+        <div class="navbar-header" style="color:yellow;"><a href="{% url 'posts' %}" class="btn btn-dark">Submit your site</a></div>
     </div>
 <!-- search form end -->
     </div>
