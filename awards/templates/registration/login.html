@@ -1,9 +1,9 @@
-{%extends "registration/base.html"%}
+{%extends "base.html"%}
 {% load bootstrap4 %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<div class="container" style=" margin-left:330px;" >
+<div class="container" style=" margin-left:330px;overflow-y:hidden;" >
   <div class="row">
     <div class="col-md-4">
       {% if errors %}
@@ -31,5 +31,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}

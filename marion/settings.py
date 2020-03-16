@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,7 +35,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+cloudinary.config(
+    cloud_name='mariannahr',
+    api_key='797864347362823',
+    api_secret='hWR1v7LbG4wl2c7EYxRY6FEigO4'
+)
+
 INSTALLED_APPS = [
+    'cloudinary',
     'bootstrap4',
     'crispy_forms',
     'awards',
@@ -82,8 +90,10 @@ WSGI_APPLICATION = 'marion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awards',
+        'USER': 'moringa',
+    'PASSWORD':'1234',
     }
 }
 
@@ -112,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

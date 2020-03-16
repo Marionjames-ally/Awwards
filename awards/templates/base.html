@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 </head>
 <body>
-    {% comment %} {% include "navbar.html" %} {% endcomment %}
+    {% include "navbar.html" %}
     {% block content %} 
      {%endblock%}
         {% block styles %}
@@ -17,4 +17,6 @@
      {% bootstrap_javascript %}
     {% endblock %}
 </body>
+<footer>
+</footer>
 </html>
