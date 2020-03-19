@@ -2,6 +2,28 @@
 {% load bootstrap4 %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load cloudinary %}
+{% cloudinary photo.image.public_id className="my-class" height=200 width=100 %}
 {% block content %}
-<h1>Hello world</h1>
+<div class="container">
+    <div class="row">
+        {% for posts in all_posts %}
+        <div class="card" style="height: 50%; width: 30%; margin-top: 50px; margin-left: 30px; margin-bottom: 20px; box-shadow: 2px 2px 5px grey;">
+                <a><img src="{{posts.image.url}}" class="card-img-top" style="  height: 200px;"></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{posts.name}}</h5>
+                  <hr>
+                  <p >Posted on : {{posts.created|date}}</p>
+                  <p>posted by :{{user.username }}</p>
+                  <a href="{{posts.link}}"   class="btn btn-dark" style="color:yellow;">view site</a>
+                  
+
+                </div>
+              </div>
+            {% empty %}
+        {% endfor %}
+    </div>
+</div>
+
+
 {% endblock %}

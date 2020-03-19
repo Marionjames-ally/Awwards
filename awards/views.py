@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate,login ,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from .forms import *
+from .models import *
 
 # Create your views here.
 def signup(request):
@@ -15,7 +17,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/')
+            return redirect('awards')
     else:
         form = SignUpForm()
     return render(request, 'registration/registration_form.html', {'form': form})
@@ -24,8 +26,21 @@ def signout(request):
     logout(request)
     return redirect('login')
 
+@csrf_exempt
 def home(request):
-    return render(request, 'index.html')
+    
+    try:
+        all_posts = Blog.objects.all()
+        print(all_posts)
+        
+    except Blog.DoesNotExist:
+        all_posts = None
+
+    return render(request, 'index.html', {'all_posts': all_posts})
+
+@login_required(login_url='login')
+def awards(request):
+    return render (request, 'projects/awards.html')
 
 @login_required(login_url='login')
 def profile(request):
@@ -55,16 +70,39 @@ def profile(request):
 
 @login_required(login_url='login')
 def posts(request):
+    captions = Blog.objects.all()
     users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = UploadForm(request.POST,request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            print(post)
             post.user = request.user.profile
             post.save()
-            return redirect('index')
+            return HttpResponseRedirect(request.path_info)
     else:
         form = UploadForm()
+    params={
+        'captions': captions,
+        'form': form,
+        'users': users,
+    }
 
-    return render(request, 'projects/post.html', {'form': form, 'users':users})
+    return render(request, 'projects/post.html',params)
+
+def success(request): 
+    return HttpResponse('successfully uploaded') 
+
+@login_required(login_url='login')
+def search_blog(request):
+    if 'q' in request.GET and request.GET['q']:
+        name = request.GET.get("q")
+        details = Blog.objects.filter(name__icontains=name)
+        message = f'name'
+        params = {
+            'details': details,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any project"
+    return render(request, 'search.html', {'message': message})

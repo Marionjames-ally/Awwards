@@ -3,4 +3,21 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
+
+{{ block.super }}
+<div class="container" style="margin-top:3%;">
+    <div class="row">
+        <div class="col-md-3"></div>
+            <div class="col-md-6" style="">
+                <form action="" method="post" enctype="multi-part/form-data" novalidate>
+                    {% csrf_token%}
+                    {{ form|crispy}}
+                    <br>
+                    <button type="submit" style="color:yellow;" class="btn btn-dark"> Submit</button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>    
+        </div>
+    </div>
+</div>    
 {% endblock %}  

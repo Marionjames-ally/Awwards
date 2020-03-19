@@ -33,4 +33,4 @@ class UpdateUserProfileForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['image', 'name', 'caption', 'link']
+        fields = ['name', 'caption', 'link','image']

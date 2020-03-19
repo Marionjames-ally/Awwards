@@ -1,7 +1,7 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 import cloudinary.uploader
-from cloudinary.models import CloudinaryField
 from django.dispatch import receiver
 # from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -38,7 +38,7 @@ class Profile(models.Model):
         return users
 
 class Blog(models.Model):
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', default = 'image')
     name = models.CharField(max_length=250)
     caption = models.CharField(max_length=250)
     link = models.URLField(max_length=250)
@@ -46,10 +46,10 @@ class Blog(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f'{self.user} Project'
+        return f'{self.user} Blog'
 
-    def save_project(self):
+    def save_blog(self):
         self.save()
 
-    def delete_project(self,id):
+    def delete_blog(self,id):
         self.delete(id=id)
