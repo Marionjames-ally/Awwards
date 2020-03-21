@@ -42,6 +42,7 @@ cloudinary.config(
 )
 
 INSTALLED_APPS = [
+    'rest_framework.authtoken',
     'rest_framework',
     'cloudinary',
     'bootstrap4',
@@ -97,6 +98,12 @@ DATABASES = {
         'USER': 'moringa',
     'PASSWORD':'1234',
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 

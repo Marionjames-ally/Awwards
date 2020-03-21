@@ -42,7 +42,7 @@ class Blog(models.Model):
     name = models.CharField(max_length=250)
     caption = models.CharField(max_length=250)
     link = models.URLField(max_length=250)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE,default="user", related_name='posts')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE,default="user", related_name='blogs')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

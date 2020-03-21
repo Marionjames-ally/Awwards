@@ -8,20 +8,20 @@
         <div class="media">
             <div class="container">
                     <div class="col-md-14">
-                        <div  style="margin-right:50px;">
-                            <img class="text-center rounded-circle" width="150px"  height="auto" src="{{user.profile.profile_picture.url}}" style="box-shadow:3px 3px 3px 10px solid black;">
+                        <div class="text-center"  style="margin-right:50px;">
+                            <img  width="200px"  height="auto" src="{{user.profile.profile_picture.url}}" style="box-shadow:3px 3px 3px 10px solid black;padding:20px;">
                         </div>
                         <div class="row">
                             
-                            <div class="col-md-14">
+                            <div class="col-md-14" style="padding:50px;margin-left:400px;">
                                 <div class="row" width="800px">
                                     <p class="mr-3" style="margin-right:20px;">{{ user.username }}</p>
-                                    <p style="margin-right:20px;" class="btn mr-3 btn-sm btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-md">Edit Profile</p>
+                                    <p style="margin-right:20px;color:yellow;" class="btn mr-3 btn-sm btn-dark" data-toggle="modal" data-target=".bd-example-modal-md">Edit Profile</p>
                                     <a class="mr-3" style="margin-right:20px;" data-toggle="modal" data-target="#ModalCenter"><i  class="fa fa-cog mt-3" id="cog" ></i></a>
                                 </div>
                                 <hr>
                                 <div class="row" width="600px">
-                                    <p class="mr-8" style="margin-right:40px;">{{images.count}} Posts</p>
+                                    <p class="mr-8" style="margin-right:40px;">{{blogs.count}} Posts</p>
                                     <p class="mr-8" style="margin-right:30px;"> {{ user.profile.following.count }} following</p>
                                     <p class="mr-8" style="margin-right:30px;">{{ user.profile.followers.count }} followers</p>
                                 </div>
@@ -61,17 +61,22 @@
     </div>
     <hr class="mt-4">
     <div class="card-columns">
-        {% for image in images %}
+        {% for image in blogs %}
         <div class="card">
-            <div class="card-body parent ">
-                <div class="im">
-                    <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img"><br><hr>
-                    <p id="overlay"class="text">like: <span style="">{{image.likes.count}}</span></p>
-                    <p><span style="">comments:{{image.comments.count}}</span></p>
-            
+                <div class="card-body">
+                    <a href="{% url 'rating' image.name %}">
+                        <img src="{{image.image.url}}"  class="card-img">
+                    </a>
+                    <p id="overlay"class="text">  
+                        <span class="text-center" style="">{{image.name}}</span><br>
+                        <hr>
+                        <a href="{{image.link}}">
+                            <button type="button" class="btn btn-dark" style="color:yellow;">view site</button>
+                        </a>
+                    </p>
+                    
                 </div>
             </div>
-        </div>
            
         {% endfor %}
     </div>
