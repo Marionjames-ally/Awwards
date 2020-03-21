@@ -53,3 +53,36 @@ class Blog(models.Model):
 
     def delete_blog(self,id):
         self.delete(id=id)
+
+class Rating(models.Model):
+    rating = (
+        (1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10'),
+    )
+
+    design = models.IntegerField(choices=rating, default=0, blank=True)
+    usability = models.IntegerField(choices=rating, blank=True)
+    content = models.IntegerField(choices=rating, blank=True)
+    score = models.FloatField(default=0, blank=True)
+    design_average = models.FloatField(default=0, blank=True)
+    usability_average = models.FloatField(default=0, blank=True)
+    content_average = models.FloatField(default=0, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='ratings', null=True)
+
+    class Meta:
+        get_latest_by='score'
+
+    @classmethod
+    def get_leading_blog(cls):
+        post=cls.objects.latest()
+        return post
+
+    def save_rating(self):
+        self.save()
+    @classmethod
+    def get_ratings(cls, id):
+        ratings = Rating.objects.filter(post_id=id).all()
+        return ratings
+
+    def __str__(self):
+        return f'{self.post} Rating'

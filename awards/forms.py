@@ -31,6 +31,12 @@ class UpdateUserProfileForm(forms.ModelForm):
         fields = [ 'profile_picture', 'bio']
 
 class UploadForm(forms.ModelForm):
+    image = CloudinaryField('image')
     class Meta:
         model = Blog
         fields = ['name', 'caption', 'link','image']
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
