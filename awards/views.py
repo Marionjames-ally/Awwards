@@ -4,6 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import render_to_string
+from django.views.generic import RedirectView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from .serializer import BlogSerializer, ProfileSerializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+
 from .forms import *
 from .models import *
 
@@ -151,3 +160,34 @@ def rating(request, post):
 
     }
     return render(request, 'projects/rating.html', params)
+
+class BlogtList(APIView):
+
+    # handling a retrieval request
+    def get(self, request, format=None):
+        all_blogs = Blog.objects.all()
+        serializers = BlogSerializer(all_blogs, many=True)
+        return Response(serializers.data)
+
+    # handling a post request
+    def post(self,request, format=None):
+        serializers = BlogSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)
+
+class ProfileList(APIView):
+
+    # handling a retrieval request
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status = status.HTTP_400_BAD_REQUEST)
