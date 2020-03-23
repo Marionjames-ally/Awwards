@@ -1,1 +1,1 @@
-web: marion.wsgi --log-file -
+web:gunicorn marion.wsgi --log-file -
