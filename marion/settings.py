@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'marion.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awards',
+        'NAME': 'award',
         'USER': 'moringa',
     'PASSWORD':'1234',
     }

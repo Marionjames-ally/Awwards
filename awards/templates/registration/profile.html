@@ -22,8 +22,6 @@
                                 <hr>
                                 <div class="row" width="600px">
                                     <p class="mr-8" style="margin-right:40px;">{{blogs.count}} Posts</p>
-                                    <p class="mr-8" style="margin-right:30px;"> {{ user.profile.following.count }} following</p>
-                                    <p class="mr-8" style="margin-right:30px;">{{ user.profile.followers.count }} followers</p>
                                 </div>
                                 <h5>{{ user.profile.name }}</h5>
                                 <p class="text-secondary">{{ user.profile.bio }}</p>
@@ -65,8 +63,9 @@
         <div class="card">
                 <div class="card-body">
                     <a href="{% url 'rating' image.name %}">
-                        <img src="{{image.image.url}}"  class="card-img">
+                        <img src="https://s3.envato.com/files/169416072/01_62_16_Hacker_Hood_Displays_Dark.jpg"  class="card-img">
                     </a>
+                    <br>
                     <p id="overlay"class="text">  
                         <span class="text-center" style="">{{image.name}}</span><br>
                         <hr>

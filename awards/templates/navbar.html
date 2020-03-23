@@ -12,6 +12,9 @@
           </div>
 
         </form>
+        {% if user.is_authenticated %}
+        <div class="navbar-header" ><a style="color:yellow;" href="{% url 'posts' %}" class="btn btn-dark">Submit your site</a></div>
+        {% endif %}
         <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'index' %}"><img src="https://www.underconsideration.com/brandnew/archives/awwwards_logo.png" width="200rem"></a>
         </div>
@@ -26,15 +29,10 @@
                   <div class="dropdown-menu dropdown-menu-center dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                       <a href="{% url 'profile' %}" class="dropdown-item" >profile</a>
                       <a class="dropdown-item" href="{% url 'signout' %}">Log out</a>
-                  </div> 
-          </div>
-        {%endif%}
-            
-        </div>
-        {% if current_user.is_authenticated %}
-        <div class="navbar-header" ><a style="color:yellow;" href="{% url 'posts' %}" class="btn btn-dark">Submit your site</a></div>
-        </div>
-        {%endif%}
+                  </div>
+            {% else %}
+            <div class="navbar-header" ><a style="color:yellow;" href="{% url 'posts' %}" class="btn btn-dark">Submit your site</a></div>
+            {%endif%}
 <!-- search form end -->
     </div>
   </nav>

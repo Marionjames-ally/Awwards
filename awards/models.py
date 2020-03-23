@@ -42,7 +42,7 @@ class Blog(models.Model):
     name = models.CharField(max_length=250)
     caption = models.CharField(max_length=250)
     link = models.URLField(max_length=250)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE,default="user", related_name='blogs')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='blogs')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
@@ -81,7 +81,7 @@ class Rating(models.Model):
         self.save()
     @classmethod
     def get_ratings(cls, id):
-        ratings = Rating.objects.filter(post_id=id).all()
+        ratings = Rating.objects.filter(post__id=id).all()
         return ratings
 
     def __str__(self):
