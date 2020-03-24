@@ -1,4 +1,13 @@
 # Introduction
+# Project prompt
+    At Moringa school you create a lot of projects (IPs, Mid-week projects) but you never know how those projects rate with your peers. Your objective is to create an application like Awwards (Links to an external site.)Links to an external site. (It doesn't necessarily have to be exactly the same). The application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
+
+A project can be rated based on 3 different criteria
+
+    Design
+    Usability
+    Content
+    These criteria can be reviewed on a scale of 1-10 and the average score is taken.
 
 ## API Endpoints (url / uri)
     - CRUD : Create, Retrieve, Update, Delete 
@@ -11,9 +20,6 @@
     Use a serializer for consistency 
     JSON -> Serializer
     Validation -> Serializer
-    
-    
-    
 ## Purpose
     The purpose of this Independent Project is to demonstrate your level of understanding of the various concepts that you have covered in the content throughout the week. The project will be graded by your peers and will determine if you are eligible to move on to the next module. All the requirements provided below should be met in a high quality manner.
 
@@ -24,15 +30,7 @@
     If you get stuck during the development of your project you can contact me on Github
 
 
-# Project prompt
-    At Moringa school you create a lot of projects (IPs, Mid-week projects) but you never know how those projects rate with your peers. Your objective is to create an application like Awwards (Links to an external site.)Links to an external site. (It doesn't necessarily have to be exactly the same). The application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
 
-A project can be rated based on 3 different criteria
-
-    Design
-    Usability
-    Content
-    These criteria can be reviewed on a scale of 1-10 and the average score is taken.
 
 # User stories
 As a user, you can:
