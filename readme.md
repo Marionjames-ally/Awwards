@@ -1,7 +1,5 @@
 # Introduction
 
-
-
 ## API Endpoints (url / uri)
     - CRUD : Create, Retrieve, Update, Delete 
     - Create List and Search
@@ -108,6 +106,9 @@ Projects will be rated/reviewed based on the following criteria:
 ## Authors
 
 Marion James
+
+[![codebeat badge](https://codebeat.co/badges/1e426fa5-cc2a-4728-9f91-31e20eeacb88)](https://codebeat.co/projects/github-com-marionjames-ally-awwards-master)
+
 ## License
 
 This project is licensed under the MIT License
